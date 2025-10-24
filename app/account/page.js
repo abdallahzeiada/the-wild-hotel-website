@@ -15,7 +15,7 @@ import {
   UserCircleIcon as UserSolid,
   SparklesIcon as SparklesSolid,
 } from "@heroicons/react/24/solid";
-import { getBookings } from "../_lib/data-service";
+import { getBookings, getGuest } from "../_lib/data-service";
 
 export const metadata = {
   title: "Account",
@@ -31,7 +31,8 @@ export default async function Page() {
   const pastBookings = bookings.filter(
     (booking) => new Date(booking.startDate) < new Date()
   );
-  const firstName = session?.user?.name?.split(" ")[0] || "Guest";
+  const guest = await getGuest(session.user.email);
+  const firstName = guest?.fullName?.split(" ")[0] || "Guest";
   const currentHour = new Date().getHours();
   const greeting =
     currentHour < 12
@@ -96,9 +97,7 @@ export default async function Page() {
             <p className="text-primary-300 text-sm font-medium mb-1">
               Total Reservations
             </p>
-            <p className="text-3xl font-bold text-white">
-              {bookings.length}
-            </p>
+            <p className="text-3xl font-bold text-white">{bookings.length}</p>
           </div>
         </div>
 
