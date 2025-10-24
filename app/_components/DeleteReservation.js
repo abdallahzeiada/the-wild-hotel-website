@@ -1,6 +1,6 @@
 "use client";
 import { TrashIcon } from "@heroicons/react/24/solid";
-// import { deleteReservation } from "../_lib/actions";
+import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import { useTransition } from "react";
 import SpinnerMini from "./SpinnerMini";
 
@@ -21,18 +21,19 @@ function DeleteReservation({ bookingId, onDelete }) {
   return (
     <button
       onClick={handleDelete}
-      className="group flex items-center gap-2 uppercase text-xs font-bold text-primary-300 flex-grow px-3 hover:bg-accent-600 transition-colors hover:text-primary-900"
+      className="flex items-center gap-2 px-4 py-2 bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-white font-semibold rounded-lg transition-all duration-300 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
       disabled={isPending}
     >
       {!isPending ? (
         <>
-          <TrashIcon className="h-5 w-5 text-primary-600 group-hover:text-primary-800 transition-colors" />
-          <span className="mt-1">Delete</span>
+          <TrashIcon className="w-4 h-4" />
+          <span>Delete</span>
         </>
       ) : (
-        <span className="mx-auto">
-          <SpinnerMini />
-        </span>
+        <>
+          <ArrowPathIcon className="w-4 h-4 animate-spin" />
+          <span>Deleting...</span>
+        </>
       )}
     </button>
   );

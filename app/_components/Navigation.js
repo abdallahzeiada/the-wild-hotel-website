@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { auth } from "@/app/_lib/auth";
 import { getGuest } from "../_lib/data-service";
+import { HomeIcon, InformationCircleIcon, UserCircleIcon } from "@heroicons/react/24/outline";
+
 export default async function Navigation() {
   const session = await auth();
   const guest = await getGuest(session?.user?.email);
@@ -10,18 +12,20 @@ export default async function Navigation() {
         <li>
           <Link
             href="/cabins"
-            className="relative px-2.5 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-full font-semibold text-white/90 hover:text-white transition-all duration-300 hover:bg-white/5 group text-xs sm:text-sm md:text-base"
+            className="relative px-2.5 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-full font-semibold text-white/90 hover:text-white transition-all duration-300 hover:bg-white/5 group text-xs sm:text-sm md:text-base flex items-center gap-1.5 sm:gap-2"
           >
-            <span className="relative z-10">Cabins</span>
+            <HomeIcon className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition-transform duration-300" />
+            <span className="relative z-10 ">Cabins</span>
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-accent-500/0 to-accent-500/0 group-hover:from-accent-500/10 group-hover:to-primary-500/10 transition-all duration-300"></div>
           </Link>
         </li>
         <li>
           <Link
             href="/about"
-            className="relative px-2.5 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-full font-semibold text-white/90 hover:text-white transition-all duration-300 hover:bg-white/5 group text-xs sm:text-sm md:text-base"
+            className="relative px-2.5 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-full font-semibold text-white/90 hover:text-white transition-all duration-300 hover:bg-white/5 group text-xs sm:text-sm md:text-base flex items-center gap-1.5 sm:gap-2"
           >
-            <span className="relative z-10">About</span>
+            <InformationCircleIcon className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition-transform duration-300" />
+            <span className="relative z-10 ">About</span>
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-accent-500/0 to-accent-500/0 group-hover:from-accent-500/10 group-hover:to-primary-500/10 transition-all duration-300"></div>
           </Link>
         </li>
@@ -37,17 +41,17 @@ export default async function Navigation() {
                 alt={session.user.name}
                 referrerPolicy="no-referrer"
               />
-              <span className="text-white hidden sm:inline">
-                {guest ? guest.fullName : "Guest area"}
+              <span className="text-white ">
+                {guest ? guest.fullName : "Account"}
               </span>
             </Link>
           ) : (
             <Link
               href="/account"
-              className="relative px-2.5 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-full font-semibold bg-gradient-to-r from-accent-500 to-accent-600 text-white hover:from-accent-600 hover:to-accent-700 transition-all duration-300 hover:scale-105 text-xs sm:text-sm md:text-base"
+              className="relative px-2.5 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-full font-semibold bg-gradient-to-r from-accent-500 to-accent-600 text-white hover:from-accent-600 hover:to-accent-700 transition-all duration-300 hover:scale-105 text-xs sm:text-sm md:text-base flex items-center gap-1.5 sm:gap-2"
             >
-              <span className="hidden sm:inline">Guest area</span>
-              <span className="sm:hidden">Account</span>
+              <UserCircleIcon className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="">Account</span>
             </Link>
           )}
         </li>

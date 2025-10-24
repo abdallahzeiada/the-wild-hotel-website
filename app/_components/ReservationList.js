@@ -19,12 +19,17 @@ function ReservationList({ bookings }) {
 
   return (
     <ul className="space-y-6">
-      {optimisitcBookings.map((booking) => (
-        <ReservationCard
-          onDelete={handleDelete}
-          booking={booking}
+      {optimisitcBookings.map((booking, index) => (
+        <li 
           key={booking.id}
-        />
+          className="animate-slideUp"
+          style={{ animationDelay: `${index * 100}ms` }}
+        >
+          <ReservationCard
+            onDelete={handleDelete}
+            booking={booking}
+          />
+        </li>
       ))}
     </ul>
   );

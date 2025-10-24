@@ -14,7 +14,7 @@ function Logo() {
         />
       </div>
       <span className="text-sm sm:text-base md:text-lg font-bold text-white tracking-wide group-hover:text-accent-400 transition-colors duration-300 hidden xs:inline">
-        The Wild Oasis
+        The Wild Hotel
       </span>
     </Link>
   );
