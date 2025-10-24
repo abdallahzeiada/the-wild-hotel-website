@@ -11,10 +11,14 @@ function TextExpander({ children }) {
     <span> 
       {displayText}{' '}
       <button
-        className='text-primary-700 border-b border-primary-700 leading-3 pb-1'
+        className='inline-flex items-center gap-1 text-accent-400 hover:text-accent-300 font-bold transition-colors duration-300 underline decoration-accent-500/30 underline-offset-4 hover:decoration-accent-400'
         onClick={() => setIsExpanded(!isExpanded)}
       >
-        {isExpanded ? 'Show less' : 'Show more'}
+        {isExpanded ? (
+          <>Show less <span className="text-sm">↑</span></>
+        ) : (
+          <>Read more <span className="text-sm">→</span></>
+        )}
       </button>
     </span>
   );

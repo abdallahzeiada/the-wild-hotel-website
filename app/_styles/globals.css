@@ -13,6 +13,15 @@
     animation: rotate 1s infinite linear;
   }
 
+  /* Responsive spinner for mobile */
+  @media (max-width: 640px) {
+    .spinner {
+      width: 50px;
+      border-width: 6px;
+      margin: 2rem auto 1rem;
+    }
+  }
+
   .spinner-mini {
     margin: 0;
     width: 20px;
@@ -28,19 +37,145 @@
       transform: rotate(1turn);
     }
   }
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .animate-shimmer {
+    animation: shimmer 3s ease-in-out infinite;
+  }
+}
+
+@layer utilities {
+  /* Animation delays for staggered effects */
+  .delay-100 {
+    animation-delay: 100ms;
+  }
+  .delay-200 {
+    animation-delay: 200ms;
+  }
+  .delay-300 {
+    animation-delay: 300ms;
+  }
+  .delay-400 {
+    animation-delay: 400ms;
+  }
+  .delay-500 {
+    animation-delay: 500ms;
+  }
+  .delay-700 {
+    animation-delay: 700ms;
+  }
+  .delay-1000 {
+    animation-delay: 1000ms;
+  }
 }
 
 /* For data picker */
 .rdp-root {
-  --rdp-cell-size: 28px !important;
+  --rdp-cell-size: 32px !important;
   --rdp-accent-color: theme("colors.accent.500") !important;
   --rdp-accent-background-color: theme("colors.accent.600") !important;
   --rdp-dropdown-gap: 1rem !important;
-  --rdp-months-gap: 1rem !important;
+  --rdp-months-gap: 2rem !important;
+}
+
+/* Responsive date picker */
+@media (max-width: 640px) {
+  .rdp-root {
+    --rdp-cell-size: 28px !important;
+    --rdp-months-gap: 1rem !important;
+  }
 }
 
 /* Force horizontal layout for months */
 .rdp-months,
 .rdp-root .rdp-months {
   flex-wrap: nowrap !important;
+  gap: 1rem !important;
+}
+
+/* Responsive months layout */
+@media (max-width: 768px) {
+  .rdp-months,
+  .rdp-root .rdp-months {
+    flex-wrap: wrap !important;
+    gap: 0.5rem !important;
+  }
+}
+
+/* Add separator between months */
+.rdp-month:not(:last-child) {
+  position: relative;
+  padding-right: 2.5rem;
+}
+
+@media (max-width: 768px) {
+  .rdp-month:not(:last-child) {
+    padding-right: 1rem;
+  }
+}
+
+.rdp-month:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 1rem;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, 
+    transparent, 
+    rgba(147, 197, 253, 0.2) 20%, 
+    rgba(147, 197, 253, 0.3) 50%, 
+    rgba(147, 197, 253, 0.2) 80%, 
+    transparent
+  );
+}
+
+@media (max-width: 768px) {
+  .rdp-month:not(:last-child)::after {
+    display: none;
+  }
+}
+
+/* Style the calendar elements */
+
+.rdp-day {
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.rdp-day:hover:not(.rdp-day_disabled):not(.rdp-day_selected) {
+  background-color: rgba(147, 197, 253, 0.1) !important;
+  transform: scale(1.05);
+}
+
+.rdp-day_selected {
+  background-color: theme("colors.accent.500") !important;
+  color: white !important;
+  font-weight: 700 !important;
+}
+
+.rdp-day_disabled {
+  opacity: 0.3;
+}
+
+.rdp-weekday {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: theme("colors.primary.300");
+}
+
+@media (max-width: 640px) {
+  .rdp-weekday {
+    font-size: 0.625rem;
+  }
 }

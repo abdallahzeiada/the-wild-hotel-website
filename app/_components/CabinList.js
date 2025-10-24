@@ -18,8 +18,18 @@ async function CabinList({ filter }) {
   if (filter === "large")
     filteredCabins = cabins.filter((cabin) => cabin.maxCapacity >= 8);
 
+  if (filteredCabins.length === 0) {
+    return (
+      <div className="text-center py-12 sm:py-16">
+        <p className="text-lg sm:text-xl text-primary-300">
+          No cabins found matching your criteria.
+        </p>
+      </div>
+    );
+  }
+
   return (
-    <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-14">
+    <div className="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
       {filteredCabins.map((cabin) => (
         <CabinCard cabin={cabin} key={cabin.id} />
       ))}
