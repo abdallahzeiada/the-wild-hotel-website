@@ -1,4 +1,4 @@
-# 🏔️ The Wild Oasis
+# 🏔️ The Wild Hotel
 
 A modern, luxury cabin booking platform built with Next.js 14, offering seamless reservation management and an elegant user experience.
 
